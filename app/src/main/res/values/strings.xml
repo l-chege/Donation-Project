@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">Donation Project</string>
+
+    <string-array name="donationtype">
+        <item>Select your Donation</item>
+        <item>Food Donation</item>
+        <item>Clothing Donation</item>
+        <item>Stationery Donation</item>
+        <item>Building Materials</item>
+        <item>Funds</item>
+        <item>Others</item>
+    </string-array>
+
+    <string-array name="donationrequest">
+        <item>Select your Request</item>
+        <item>Food Donation</item>
+        <item>Clothing Donation</item>
+        <item>Stationery Donation</item>
+        <item>Building Materials</item>
+        <item>Funds</item>
+        <item>Others</item>
+    </string-array>
+
+</resources>
