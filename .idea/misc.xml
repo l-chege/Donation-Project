@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/toshiba/AndroidStudioProjects/DonationProject/app/src/main/res/drawable/button_background.xml" value="0.1" />
+        <entry key="..\:/Users/toshiba/AndroidStudioProjects/DonationProject/app/src/main/res/drawable/header_background.xml" value="0.1" />
         <entry key="..\:/Users/toshiba/AndroidStudioProjects/DonationProject/app/src/main/res/drawable/ic_email.xml" value="0.1" />
         <entry key="..\:/Users/toshiba/AndroidStudioProjects/DonationProject/app/src/main/res/drawable/ic_number.xml" value="0.1" />
         <entry key="..\:/Users/toshiba/AndroidStudioProjects/DonationProject/app/src/main/res/drawable/ic_person.xml" value="0.1" />
@@ -15,6 +16,7 @@
         <entry key="..\:/Users/toshiba/AndroidStudioProjects/DonationProject/app/src/main/res/layout/activity_select_registration.xml" value="0.1" />
         <entry key="..\:/Users/toshiba/AndroidStudioProjects/DonationProject/app/src/main/res/layout/activity_splashcreen.xml" value="0.1" />
         <entry key="..\:/Users/toshiba/AndroidStudioProjects/DonationProject/app/src/main/res/layout/activity_volunteer_registration.xml" value="0.12409420289855072" />
+        <entry key="..\:/Users/toshiba/AndroidStudioProjects/DonationProject/app/src/main/res/layout/header.xml" value="0.1" />
       </map>
     </option>
   </component>
