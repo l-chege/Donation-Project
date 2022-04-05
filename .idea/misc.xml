@@ -5,10 +5,15 @@
       <map>
         <entry key="..\:/Users/toshiba/AndroidStudioProjects/DonationProject/app/src/main/res/drawable/button_background.xml" value="0.1" />
         <entry key="..\:/Users/toshiba/AndroidStudioProjects/DonationProject/app/src/main/res/drawable/header_background.xml" value="0.1" />
+        <entry key="..\:/Users/toshiba/AndroidStudioProjects/DonationProject/app/src/main/res/drawable/ic_check.xml" value="0.1" />
         <entry key="..\:/Users/toshiba/AndroidStudioProjects/DonationProject/app/src/main/res/drawable/ic_email.xml" value="0.1" />
+        <entry key="..\:/Users/toshiba/AndroidStudioProjects/DonationProject/app/src/main/res/drawable/ic_myfeed.xml" value="0.1" />
         <entry key="..\:/Users/toshiba/AndroidStudioProjects/DonationProject/app/src/main/res/drawable/ic_number.xml" value="0.1" />
         <entry key="..\:/Users/toshiba/AndroidStudioProjects/DonationProject/app/src/main/res/drawable/ic_person.xml" value="0.1" />
         <entry key="..\:/Users/toshiba/AndroidStudioProjects/DonationProject/app/src/main/res/drawable/ic_phoneno.xml" value="0.1" />
+        <entry key="..\:/Users/toshiba/AndroidStudioProjects/DonationProject/app/src/main/res/drawable/ic_yesfeed.xml" value="0.1" />
+        <entry key="..\:/Users/toshiba/AndroidStudioProjects/DonationProject/app/src/main/res/drawable/navigation_selector.xml" value="0.1" />
+        <entry key="..\:/Users/toshiba/AndroidStudioProjects/DonationProject/app/src/main/res/drawable/navigation_view_item_selected.xml" value="0.1" />
         <entry key="..\:/Users/toshiba/AndroidStudioProjects/DonationProject/app/src/main/res/layout/activity_donor_registration.xml" value="0.1" />
         <entry key="..\:/Users/toshiba/AndroidStudioProjects/DonationProject/app/src/main/res/layout/activity_login.xml" value="0.12545289855072464" />
         <entry key="..\:/Users/toshiba/AndroidStudioProjects/DonationProject/app/src/main/res/layout/activity_main.xml" value="0.20416666666666666" />
@@ -17,6 +22,7 @@
         <entry key="..\:/Users/toshiba/AndroidStudioProjects/DonationProject/app/src/main/res/layout/activity_splashcreen.xml" value="0.1" />
         <entry key="..\:/Users/toshiba/AndroidStudioProjects/DonationProject/app/src/main/res/layout/activity_volunteer_registration.xml" value="0.12409420289855072" />
         <entry key="..\:/Users/toshiba/AndroidStudioProjects/DonationProject/app/src/main/res/layout/header.xml" value="0.1" />
+        <entry key="..\:/Users/toshiba/AndroidStudioProjects/DonationProject/app/src/main/res/menu/main_menu.xml" value="0.2" />
       </map>
     </option>
   </component>
