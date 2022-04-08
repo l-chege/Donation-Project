@@ -44,7 +44,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.Viewholder>{
         holder.type.setText(user.getType());
 
         if (user.getType().equals("donor")){
-            holder.emailNow.setVisibility(View.GONE);
+            holder.emailNow.setVisibility(View.VISIBLE);
         }
 
         holder.userEmail.setText(user.getEmail());

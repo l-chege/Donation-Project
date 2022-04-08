@@ -17,6 +17,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.donationproject.Adapter.UserAdapter;
@@ -157,6 +158,34 @@ public class MainActivity extends AppCompatActivity
 
     }
 
+    private void readDonors() {
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference()
+                .child("users");
+        Query query = reference.orderByChild("type").equalTo("donor");
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                userList.clear();
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()){
+                    User user = dataSnapshot.getValue(User.class);
+                    userList.add(user);
+                }
+                userAdapter.notifyDataSetChanged();
+                progressbar.setVisibility(View.GONE);
+
+                if (userList.isEmpty()){
+                    Toast.makeText(MainActivity.this, "No donors", Toast.LENGTH_SHORT).show();
+                    progressbar.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
     private void readManagers() {
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference()
                 .child("users");
@@ -166,8 +195,15 @@ public class MainActivity extends AppCompatActivity
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 userList.clear();
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()){
-                    User user = snapshot.getValue(User.class);
+                    User user = dataSnapshot.getValue(User.class);
                     userList.add(user);
+                }
+                userAdapter.notifyDataSetChanged();
+                progressbar.setVisibility(View.GONE);
+
+                if (userList.isEmpty()){
+                    Toast.makeText(MainActivity.this, "No managers", Toast.LENGTH_SHORT).show();
+                    progressbar.setVisibility(View.GONE);
                 }
             }
 
@@ -181,9 +217,53 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
+
+            case R.id.food:
+                Intent intent3 = new Intent(MainActivity.this, CategorySelectedActivity.class);
+                intent3.putExtra("type","Food Donation");
+                startActivity(intent3);
+                break;
+
+            case R.id.clothing:
+                Intent intent4 = new Intent(MainActivity.this, CategorySelectedActivity.class);
+                intent4.putExtra("type","Cloth Donation");
+                startActivity(intent4);
+                break;
+
+            case R.id.stationery:
+                Intent intent5 = new Intent(MainActivity.this, CategorySelectedActivity.class);
+                intent5.putExtra("type","Stationery");
+                startActivity(intent5);
+                break;
+
+            case R.id.funds:
+                Intent intent6 = new Intent(MainActivity.this, CategorySelectedActivity.class);
+                intent6.putExtra("type","Funds");
+                startActivity(intent6);
+                break;
+
+            case R.id.building:
+                Intent intent7 = new Intent(MainActivity.this, CategorySelectedActivity.class);
+                intent7.putExtra("type","Building Items");
+                startActivity(intent7);
+                break;
+
+            case R.id.others:
+                Intent intent8 = new Intent(MainActivity.this, CategorySelectedActivity.class);
+                intent8.putExtra("type","Others");
+                startActivity(intent8);
+                break;
+
             case R.id.profile:
                 Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
                 startActivity(intent);
+                break;
+
+            case R.id.logout:
+                FirebaseAuth.getInstance().signOut();
+                Intent intent2 = new Intent(MainActivity.this, LoginActivity.class);
+                startActivity(intent2);
+                break;
         }
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
