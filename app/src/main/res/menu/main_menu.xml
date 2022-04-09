@@ -57,6 +57,7 @@
                     android:title="Profile"/>
                 <item
                     android:id="@+id/notification"
+                    android:visible="false"
                     android:icon="@drawable/ic_baseline_notifications_24"
                     android:title="Notification"/>
                 <item

@@ -13,12 +13,14 @@ import com.example.donationproject.R;
 
 import java.util.Properties;
 
+import javax.mail.Authenticator;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 public class JavaMailApi extends AsyncTask<Void, Void, Void> {
 
@@ -53,20 +55,20 @@ public class JavaMailApi extends AsyncTask<Void, Void, Void> {
         properties.put("mail.smtp.auth", "true");
         properties.put("mail.smtp.port", "465");
 
-        session = Session.getDefaultInstance(properties, new javax.mail.Authenticator() {
+        session = Session.getDefaultInstance(properties, new Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {
                 return new PasswordAuthentication(Util.EMAIL, Util.PASSWORD);
             }
         });
 
-        MineMessage mineMessage = new MineMessage(session);
+        MimeMessage mimeMessage = new MimeMessage(session);
 
         try {
-            mineMessage.setFrom(new InternetAddress(Util.EMAIL));
-            mineMessage.addRecipients(Message.RecipientType.TO, String.valueOf(new InternetAddress(email)));
-            mineMessage.setSubject(subject);
-            mineMessage.setText(message);
-            Transport.send(mineMessage);
+            mimeMessage.setFrom(new InternetAddress(Util.EMAIL));
+            mimeMessage.addRecipients(Message.RecipientType.TO, String.valueOf(new InternetAddress(email)));
+            mimeMessage.setSubject(subject);
+            mimeMessage.setText(message);
+            Transport.send(mimeMessage);
         } catch (MessagingException e) {
             e.printStackTrace();
         }
