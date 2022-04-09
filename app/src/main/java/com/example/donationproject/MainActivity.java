@@ -254,6 +254,13 @@ public class MainActivity extends AppCompatActivity
                 startActivity(intent8);
                 break;
 
+            case R.id.compatible:
+                Intent intent9 = new Intent(MainActivity.this, CategorySelectedActivity.class);
+                intent9.putExtra("type","Compatible with me");
+                startActivity(intent9);
+                break;
+
+
             case R.id.profile:
                 Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
                 startActivity(intent);
