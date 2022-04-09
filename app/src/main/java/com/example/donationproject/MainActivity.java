@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -146,6 +147,12 @@ public class MainActivity extends AppCompatActivity
                     }else {
                         nav_profile_image.setImageResource(R.drawable.profile);
                     }
+
+                    Menu nav_menu = nav_view.getMenu();
+
+                    if (type.equals("donor")){
+                        nav_menu.findItem(R.id.sentEmail).setTitle("Received Emails");
+                    }
                 }
 
             }
@@ -258,6 +265,11 @@ public class MainActivity extends AppCompatActivity
                 Intent intent9 = new Intent(MainActivity.this, CategorySelectedActivity.class);
                 intent9.putExtra("type","Compatible with me");
                 startActivity(intent9);
+                break;
+
+            case R.id.sentEmail:
+                Intent intent10 = new Intent(MainActivity.this, SentEmailActivity.class);
+                startActivity(intent10);
                 break;
 
 
