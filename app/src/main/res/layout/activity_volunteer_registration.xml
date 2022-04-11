@@ -171,6 +171,7 @@
                         android:drawableStart="@drawable/ic_email"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
+
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -189,7 +190,7 @@
                         android:textColor="#000"
                         android:textSize="18sp"
                         android:textColorHint="#000"
-                        android:drawableStart="@drawable/ic_number"/>
+                        android:drawableStart="@drawable/ic_lock"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <Button
