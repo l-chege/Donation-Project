@@ -151,17 +151,17 @@ public class ManagerRegistrationActivity extends AppCompatActivity {
                             String currentUserId = mAuth.getCurrentUser().getUid();
                             userDatabaseRef = FirebaseDatabase.getInstance().getReference()
                                     .child("users").child(currentUserId);
-                            HashMap userinfo = new HashMap();
-                            userinfo.put("id", currentUserId);
-                            userinfo.put("name", name);
-                            userinfo.put("email", emailID);
-                            userinfo.put("IdNumber", IdNumber);
-                            userinfo.put("phonenumber", phoneNumber);
-                            userinfo.put("donationtype", donationtype);
-                            userinfo.put("type", "manager");
-                            userinfo.put("search", "manager"+donationtype);
+                            HashMap userInfo = new HashMap();
+                            userInfo.put("id", currentUserId);
+                            userInfo.put("name", name);
+                            userInfo.put("email", emailID);
+                            userInfo.put("IdNumber", IdNumber);
+                            userInfo.put("phonenumber", phoneNumber);
+                            userInfo.put("donationtype", donationtype);
+                            userInfo.put("type", "manager");
+                            userInfo.put("search", "manager"+donationtype);
 
-                            userDatabaseRef.updateChildren(userinfo).addOnCompleteListener(new OnCompleteListener() {
+                            userDatabaseRef.updateChildren(userInfo).addOnCompleteListener(new OnCompleteListener() {
                                 @Override
                                 public void onComplete(@NonNull Task task) {
                                     if (task.isSuccessful()){

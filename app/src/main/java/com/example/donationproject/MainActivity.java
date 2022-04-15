@@ -34,6 +34,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -66,7 +67,7 @@ public class MainActivity extends AppCompatActivity
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Donate App");
+        Objects.requireNonNull(getSupportActionBar()).setTitle("Donate App");
 
 
         drawerLayout = findViewById(R.id.drawerLayout);
@@ -93,12 +94,12 @@ public class MainActivity extends AppCompatActivity
         recyclerView.setAdapter(userAdapter);
 
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference()
-                .child("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+                .child("users").child(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid());
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()){
-                    String type = snapshot.child("type").getValue().toString();
+                    String type = Objects.requireNonNull(snapshot.child("type").getValue()).toString();
                 type.equals("donor");
                     readManagers();
                 }else{
@@ -129,21 +130,21 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()){
-                    String name = snapshot.child("name").getValue().toString();
+                    String name = Objects.requireNonNull(snapshot.child("name").getValue()).toString();
                     nav_fullname.setText(name);
 
-                    String email = snapshot.child("email").getValue().toString();
+                    String email = Objects.requireNonNull(snapshot.child("email").getValue()).toString();
                     nav_email.setText(name);
 
-                    String donationtype = snapshot.child("donationtype").getValue().toString();
+                    String donationtype = Objects.requireNonNull(snapshot.child("donationtype").getValue()).toString();
                     nav_donationtype.setText(name);
 
-                    String type = snapshot.child("type").getValue().toString();
+                    String type = Objects.requireNonNull(snapshot.child("type").getValue()).toString();
                     nav_type.setText(name);
 
 
                     if (snapshot.hasChild("profilepicturesurl")){
-                        String imageUrl = snapshot.child("profilepictureurl").getValue().toString();
+                        String imageUrl = Objects.requireNonNull(snapshot.child("profilepictureurl").getValue()).toString();
                         Glide.with(getApplicationContext()).load(imageUrl).into(nav_profile_image);
                     }else {
                         nav_profile_image.setImageResource(R.drawable.profile);
