@@ -13,7 +13,6 @@ import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,6 +33,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -135,14 +135,14 @@ public class VolunteerRegistrationActivity extends AppCompatActivity {
                             public void onComplete(@NonNull Task<AuthResult> task) {
 
                                 if(task.isSuccessful()){
-                                    String error = task.getException().toString();
+                                    String error = Objects.requireNonNull(task.getException()).toString();
                                     Toast.makeText(VolunteerRegistrationActivity.this, "Error" + error, Toast.LENGTH_SHORT).show();
                                 }
                                 else {
-                                    String currentUserId = mAuth.getCurrentUser().getUid();
+                                    String currentUserId = Objects.requireNonNull(mAuth.getCurrentUser()).getUid();
                                     userDatabaseRef = FirebaseDatabase.getInstance().getReference()
                                             .child("users").child(currentUserId);
-                                    HashMap userInfo = new HashMap();
+                                    HashMap<String, Object> userInfo = new HashMap<String, Object>();
                                     userInfo.put("id", currentUserId);
                                     userInfo.put("name", name);
                                     userInfo.put("email", emailID);
@@ -195,7 +195,7 @@ public class VolunteerRegistrationActivity extends AppCompatActivity {
                                                         @Override
                                                         public void onSuccess(Uri uri) {
                                                             String imageUrl = uri.toString();
-                                                            Map newImageMap = new HashMap();
+                                                            Map<String, Object> newImageMap = new HashMap<>();
                                                             newImageMap.put("profilepictureurl", imageUrl);
 
                                                             userDatabaseRef.updateChildren(newImageMap).addOnCompleteListener(new OnCompleteListener() {
@@ -204,7 +204,7 @@ public class VolunteerRegistrationActivity extends AppCompatActivity {
                                                                     if (task.isSuccessful()){
                                                                         Toast.makeText(VolunteerRegistrationActivity.this, "Image url added to database successfully", Toast.LENGTH_SHORT).show();
                                                                     }else {
-                                                                        Toast.makeText(VolunteerRegistrationActivity.this, task.getException().toString(), Toast.LENGTH_SHORT).show();
+                                                                        Toast.makeText(VolunteerRegistrationActivity.this, Objects.requireNonNull(task.getException()).toString(), Toast.LENGTH_SHORT).show();
                                                                     }
                                                                 }
                                                             });

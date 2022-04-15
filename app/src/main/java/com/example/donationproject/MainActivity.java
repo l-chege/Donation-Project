@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        Objects.requireNonNull(getSupportActionBar()).setTitle("Donate App");
+        getSupportActionBar().setTitle("Donate App");
 
 
         drawerLayout = findViewById(R.id.drawerLayout);
@@ -94,12 +94,12 @@ public class MainActivity extends AppCompatActivity
         recyclerView.setAdapter(userAdapter);
 
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference()
-                .child("users").child(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid());
+                .child("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()){
-                    String type = Objects.requireNonNull(snapshot.child("type").getValue()).toString();
+                    String type = snapshot.child("type").getValue().toString();
                 type.equals("donor");
                     readManagers();
                 }else{
@@ -122,6 +122,7 @@ public class MainActivity extends AppCompatActivity
         nav_donationtype = nav_view.getHeaderView(0).findViewById(R.id.nav_user_donationtype);
         nav_type = nav_view.getHeaderView(0).findViewById(R.id.nav_user_type);
 
+        // Fetch data from firebase and display it to those views
         userRef = FirebaseDatabase.getInstance().getReference().child("users").child(
                 FirebaseAuth.getInstance().getCurrentUser().getUid()
         );
@@ -139,17 +140,18 @@ public class MainActivity extends AppCompatActivity
                     String donationtype = Objects.requireNonNull(snapshot.child("donationtype").getValue()).toString();
                     nav_donationtype.setText(name);
 
-                    String type = Objects.requireNonNull(snapshot.child("type").getValue()).toString();
+                    String type = snapshot.child("type").getValue().toString();
                     nav_type.setText(name);
 
 
                     if (snapshot.hasChild("profilepicturesurl")){
-                        String imageUrl = Objects.requireNonNull(snapshot.child("profilepictureurl").getValue()).toString();
+                        String imageUrl = snapshot.child("profilepictureurl").getValue().toString();
                         Glide.with(getApplicationContext()).load(imageUrl).into(nav_profile_image);
                     }else {
                         nav_profile_image.setImageResource(R.drawable.profile);
                     }
 
+                    // Change menu based on who is logged in
                     Menu nav_menu = nav_view.getMenu();
 
                     if (type.equals("donor")){

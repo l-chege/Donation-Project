@@ -34,6 +34,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -143,7 +144,7 @@ public class DonorRegistrationActivity extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
 
-                                if(task.isSuccessful()){
+                                if (!task.isSuccessful()){
                                     String error = task.getException().toString();
                                     Toast.makeText(DonorRegistrationActivity.this, "Error" + error, Toast.LENGTH_SHORT).show();
                                 }
@@ -151,7 +152,7 @@ public class DonorRegistrationActivity extends AppCompatActivity {
                                     String currentUserId = mAuth.getCurrentUser().getUid();
                                     userDatabaseRef = FirebaseDatabase.getInstance().getReference()
                                             .child("users").child(currentUserId);
-                                    HashMap userInfo = new HashMap();
+                                    HashMap userInfo = new HashMap<>();
                                     userInfo.put("id", currentUserId);
                                     userInfo.put("name", name);
                                     userInfo.put("email", emailID);
@@ -161,13 +162,14 @@ public class DonorRegistrationActivity extends AppCompatActivity {
                                     userInfo.put("type", "donor");
                                     userInfo.put("search", "donor"+donationtype);
 
-                                    userDatabaseRef.updateChildren(userInfo).addOnCompleteListener(new OnCompleteListener() {
+                                    userDatabaseRef.updateChildren(userInfo).addOnCompleteListener(
+                                            new OnCompleteListener() {
                                         @Override
                                         public void onComplete(@NonNull Task task) {
                                             if (task.isSuccessful()){
                                                 Toast.makeText(DonorRegistrationActivity.this, "Data set Successful", Toast.LENGTH_SHORT).show();
                                             }else {
-                                                Toast.makeText(DonorRegistrationActivity.this, task.getException().toString(), Toast.LENGTH_SHORT).show();
+                                                Toast.makeText(DonorRegistrationActivity.this, Objects.requireNonNull(task.getException()).toString(), Toast.LENGTH_SHORT).show();
                                             }
 
                                             finish();
@@ -207,7 +209,7 @@ public class DonorRegistrationActivity extends AppCompatActivity {
                                                         @Override
                                                         public void onSuccess(Uri uri) {
                                                             String imageUrl = uri.toString();
-                                                            Map newImageMap = new HashMap();
+                                                            Map<String, Object> newImageMap = new HashMap<String, Object>();
                                                             newImageMap.put("profilepictureurl", imageUrl);
 
                                                             userDatabaseRef.updateChildren(newImageMap).addOnCompleteListener(new OnCompleteListener() {
@@ -216,7 +218,7 @@ public class DonorRegistrationActivity extends AppCompatActivity {
                                                                     if (task.isSuccessful()){
                                                                         Toast.makeText(DonorRegistrationActivity.this, "Image url added to database successfully", Toast.LENGTH_SHORT).show();
                                                                     }else {
-                                                                        Toast.makeText(DonorRegistrationActivity.this, task.getException().toString(), Toast.LENGTH_SHORT).show();
+                                                                        Toast.makeText(DonorRegistrationActivity.this, Objects.requireNonNull(task.getException()).toString(), Toast.LENGTH_SHORT).show();
                                                                     }
                                                                 }
                                                             });
