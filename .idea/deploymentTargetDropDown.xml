@@ -7,12 +7,12 @@
         <deviceKey>
           <Key>
             <type value="SERIAL_NUMBER" />
-            <value value="0576937097003162" />
+            <value value="OVLBHAFQ5LLZPNGY" />
           </Key>
         </deviceKey>
       </Target>
     </runningDeviceTargetSelectedWithDropDown>
-    <timeTargetWasSelectedWithDropDown value="2022-04-15T16:11:21.586177100Z" />
+    <timeTargetWasSelectedWithDropDown value="2022-04-16T10:52:04.278675700Z" />
     <runningDeviceTargetsSelectedWithDialog>
       <Target>
         <type value="RUNNING_DEVICE_TARGET" />
