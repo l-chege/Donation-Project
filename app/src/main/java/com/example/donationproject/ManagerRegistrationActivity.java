@@ -144,15 +144,15 @@ public class ManagerRegistrationActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
 
-                        if(task.isSuccessful()){
+                        if(!task.isSuccessful()){
                             String error = task.getException().toString();
                             Toast.makeText(ManagerRegistrationActivity.this, "Error" + error, Toast.LENGTH_SHORT).show();
                         }
                         else {
-                            String currentUserId = Objects.requireNonNull(mAuth.getCurrentUser()).getUid();
+                            String currentUserId = mAuth.getCurrentUser().getUid();
                             userDatabaseRef = FirebaseDatabase.getInstance().getReference()
                                     .child("users").child(currentUserId);
-                            HashMap<String, Object> userInfo = new HashMap<String, Object>();
+                            HashMap userInfo = new HashMap<>();
                             userInfo.put("id", currentUserId);
                             userInfo.put("name", name);
                             userInfo.put("email", emailID);
