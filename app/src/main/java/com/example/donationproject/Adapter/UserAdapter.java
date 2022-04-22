@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -44,7 +43,6 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.Viewholder>{
         this.userList = userList;
     }
 
-    @NonNull
     @Override
     public Viewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(
@@ -92,7 +90,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.Viewholder>{
                                                 String nameOfSender = snapshot.child("name").getValue().toString();
                                                 String email = snapshot.child("email").getValue().toString();
                                                 String phone = snapshot.child("phoneNumber").getValue().toString();
-                                                String donation = snapshot.child("donationType").getValue().toString();
+                                                String donationType = snapshot.child("donationType").getValue().toString();
 
                                                 String  mEmail = user.getEmail();
                                                 String  mSubject = "DONATION";
