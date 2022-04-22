@@ -130,7 +130,10 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.Viewholder>{
                                             }
                                         });
                             }
-                        });
+                        })
+                .setNegativeButton("No", null)
+                        .show();
+
             }
         });
 
