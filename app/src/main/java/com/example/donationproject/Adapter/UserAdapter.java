@@ -56,6 +56,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.Viewholder>{
 
         holder.type.setText(user.getType());
 
+        //filter donors out
         if (user.getType().equals("donor")){
             holder.emailNow.setVisibility(View.VISIBLE);
         }
@@ -65,12 +66,13 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.Viewholder>{
         holder.userName.setText(user.getName());
         holder.donationType.setText(user.getDonationtype());
 
+        //fetch image with glide
         Glide.with(context).load(user.getProfilepictureurl()).into(holder.userProfileImage);
 
         final String nameOfTheReceiver = user.getName();
         final String idOfTheReceiver = user.getId();
 
-        //sending the email
+        //sending the email by setting on click
 
         holder.emailNow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,7 +83,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.Viewholder>{
                         .setCancelable(false)
                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
+                            public void onClick(DialogInterface dialog, int which) {
                                 DatabaseReference reference = FirebaseDatabase.getInstance().getReference()
                                         .child("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
                                         reference.addValueEventListener(new ValueEventListener() {
@@ -90,10 +92,10 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.Viewholder>{
                                                 String nameOfSender = snapshot.child("name").getValue().toString();
                                                 String email = snapshot.child("email").getValue().toString();
                                                 String phone = snapshot.child("phoneNumber").getValue().toString();
-                                                String donationType = snapshot.child("donationType").getValue().toString();
+                                                String donation = snapshot.child("donationType").getValue().toString();
 
                                                 String  mEmail = user.getEmail();
-                                                String  mSubject = "DONATION";
+                                                String  mSubject = "DONATION REQUEST";
                                                 String mMessage = "Hello "+ nameOfTheReceiver+", "+nameOfSender+
                                                         "would like donation from you. Here's his/her details:\n"
                                                         +"Name: "+nameOfSender+ "\n"+
@@ -104,6 +106,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.Viewholder>{
 
                                                 JavaMailApi javaMailApi = new JavaMailApi(context, mEmail, mSubject, mMessage);
                                                 javaMailApi.execute();
+
 
                                                 DatabaseReference ref = FirebaseDatabase.getInstance().getReference("emails")
                                                         .child(FirebaseAuth.getInstance().getCurrentUser().getUid());
