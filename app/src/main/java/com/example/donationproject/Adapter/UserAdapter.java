@@ -14,6 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.annotation.GlideModule;
+import com.bumptech.glide.module.AppGlideModule;
 import com.example.donationproject.Email.JavaMailApi;
 import com.example.donationproject.Model.User;
 import com.example.donationproject.R;
@@ -43,6 +45,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.Viewholder>{
         this.userList = userList;
     }
 
+    @NonNull
     @Override
     public Viewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(
@@ -67,7 +70,13 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.Viewholder>{
         holder.donationType.setText(user.getDonationtype());
 
         //fetch image with glide
-        Glide.with(context).load(user.getProfilepictureurl()).into(holder.userProfileImage);
+        @GlideModule
+        class MyAppGlideModule extends AppGlideModule {
+            @Override
+            public boolean isManifestParsingEnabled() {
+                return false;
+            }
+        }
 
         final String nameOfTheReceiver = user.getName();
         final String idOfTheReceiver = user.getId();
@@ -148,11 +157,11 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.Viewholder>{
         return userList.size();
     }
 
-    public class Viewholder extends RecyclerView.ViewHolder{
+    public static class Viewholder extends RecyclerView.ViewHolder{
 
-        public CircleImageView userProfileImage;
-        public TextView type, userName, userEmail, phoneNumber, donationType;
-        public Button emailNow;
+        private CircleImageView userProfileImage;
+        private TextView type, userName, userEmail, phoneNumber, donationType;
+        private Button emailNow;
 
         public Viewholder(@NonNull View itemView) {
             super(itemView);
