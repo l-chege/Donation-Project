@@ -98,9 +98,8 @@ public class MainActivity extends AppCompatActivity
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()){
                     String type = snapshot.child("type").getValue().toString();
-                type.equals("donor");
+                if (type.equals("donor")) {
                     readManagers();
                 }else{
                     readDonors();
