@@ -66,6 +66,7 @@ public class ProfileActivity extends AppCompatActivity {
 
                     Glide.with(getApplicationContext()).load(snapshot.child("profilepictureurl").getValue().toString()).into(profileImage);
 
+
                 }
 
             }
