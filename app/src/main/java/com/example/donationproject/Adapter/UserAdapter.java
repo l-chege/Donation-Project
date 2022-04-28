@@ -32,6 +32,7 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -92,16 +93,16 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.Viewholder>{
                         .setCancelable(false)
                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             @Override
-                            public void onClick(DialogInterface dialog, int which) {
+                            public void onClick(DialogInterface dialogInterface, int i) {
                                 DatabaseReference reference = FirebaseDatabase.getInstance().getReference()
-                                        .child("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+                                        .child("users").child(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid());
                                         reference.addValueEventListener(new ValueEventListener() {
                                             @Override
                                             public void onDataChange(@NonNull DataSnapshot snapshot) {
                                                 String nameOfSender = snapshot.child("name").getValue().toString();
                                                 String email = snapshot.child("email").getValue().toString();
-                                                String phone = snapshot.child("phoneNumber").getValue().toString();
-                                                String donation = snapshot.child("donationType").getValue().toString();
+                                                String phone = snapshot.child("phonenumber").getValue().toString();
+                                                String donation = snapshot.child("donationtype").getValue().toString();
 
                                                 String  mEmail = user.getEmail();
                                                 String  mSubject = "DONATION REQUEST";

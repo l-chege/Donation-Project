@@ -59,9 +59,9 @@ public class ProfileActivity extends AppCompatActivity {
                 if (snapshot.exists()){
                     type.setText(snapshot.child("type").getValue().toString());
                     name.setText(snapshot.child("name").getValue().toString());
-                    idNumber.setText(snapshot.child("idNumber").getValue().toString());
-                    phoneNumber.setText(snapshot.child("phoneNumber").getValue().toString());
-                    donationType.setText(snapshot.child("donationType").getValue().toString());
+                    idNumber.setText(snapshot.child("idnumber").getValue().toString());
+                    phoneNumber.setText(snapshot.child("phonenumber").getValue().toString());
+                    donationType.setText(snapshot.child("donationtype").getValue().toString());
                     email.setText(snapshot.child("email").getValue().toString());
 
                     Glide.with(getApplicationContext()).load(snapshot.child("profilepictureurl").getValue().toString()).into(profileImage);
