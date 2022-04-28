@@ -40,7 +40,7 @@ public class JavaMailApi extends AsyncTask<Void, Void, Void> {
     @Override
     protected void onPreExecute() {
         progressDialog = new ProgressDialog(context);
-        progressDialog.setMessage("Please wait as the email is being sent..");
+        progressDialog.setMessage("Please wait as the email is being sent...");
         progressDialog.setTitle("Sending Email to donor");
         progressDialog.show();
         super.onPreExecute();
@@ -55,7 +55,7 @@ public class JavaMailApi extends AsyncTask<Void, Void, Void> {
         properties.put("mail.smtp.auth", "true");
         properties.put("mail.smtp.port", "465");
 
-        session = Session.getDefaultInstance(properties, new Authenticator() {
+        session = Session.getDefaultInstance(properties, new javax.mail.Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {
                 return new PasswordAuthentication(Util.EMAIL, Util.PASSWORD);
             }

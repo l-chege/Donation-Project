@@ -88,7 +88,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.Viewholder>{
             public void onClick(View view) {
                 new AlertDialog.Builder(context)
                         .setTitle("SEND EMAIL")
-                        .setMessage("Send email to" + user.getName()+ "?")
+                        .setMessage("Send email to" + user.getName() + "?")
                         .setCancelable(false)
                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             @Override
@@ -106,7 +106,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.Viewholder>{
                                                 String  mEmail = user.getEmail();
                                                 String  mSubject = "DONATION REQUEST";
                                                 String mMessage = "Hello "+ nameOfTheReceiver+", "+nameOfSender+
-                                                        "would like donation from you. Here's his/her details:\n"
+                                                        "would like a donation from you. Here's his/her details:\n"
                                                         +"Name: "+nameOfSender+ "\n"+
                                                         "Phone Number: "+phone+ "\n"+
                                                         "Email: "+email+ "\n"+
